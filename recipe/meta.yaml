@@ -3,7 +3,7 @@
 {%set compress_type = "tar.gz" %}
 {%set hash_type = "sha256" %}
 {%set hash_val = "24d7f2f94f7f3cb6061acb215685e5125fbcdc40a857eff9de22518820b0a4f4" %}
-{%set build_num = "0" %}
+{%set build_num = "1" %}
 
 package:
   name: {{ name|lower }}
@@ -16,12 +16,12 @@ source:
 
 build:
   number: {{ build_num }}
-  script: python setup.py install
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
+    - pip
 
   run:
     - python
